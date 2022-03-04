@@ -12,10 +12,10 @@ const auth = require('./routes/auth');
 const express = require('express');
 const app = express();
 
-// if(!config.has('jwtPrivatekey')) {
-//   console.error('FATAL ERROR: jwtPrivateKey is not found');
-//   process.exit(1);
-// }
+if(config.has('jwtPrivatekey')) {
+  console.error('FATAL ERROR: jwtPrivateKey is not found');
+  process.exit(1);
+}
 
 
 

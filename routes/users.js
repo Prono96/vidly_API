@@ -10,7 +10,7 @@ const express = require('express');
 const router = express.Router();
 
 // Get all users 
-router.get('/me', async (req, res) => {
+router.get('/me', auth, async (req, res) => {
   const user = await User.findById(req.user._id).select('-password');
   res.send(user);
 });
@@ -29,9 +29,9 @@ router.post('/', async (req, res) => {
 
   await user.save();
 
-  // const token = user.generateAuthToken();
-  const token = jwt.sign({_id: user._id }, config.get('jwtPrivateKey'));
+  const token = user.generateAuthToken();
   res.header('x-auth-token', token).send( _.pick(user, ['name', 'email']));
+  console.log('User has been added');
 });
 
 // Delete a user 
