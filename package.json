@@ -20,6 +20,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^5.0.2",
-    "require-stack": "^1.0.2"
+    "require-stack": "^1.0.2",
+    "winston": "^2.4.0"
   }
 }

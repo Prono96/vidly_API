@@ -1,4 +1,5 @@
 require('express-async-errors');
+const winston = require('winston');
 const error = require('./middleware/error');
 const jwt = require('jsonwebtoken');
 const config = require('config');
@@ -13,6 +14,8 @@ const users = require('./routes/users');
 const auth = require('./routes/auth');
 const express = require('express');
 const app = express();
+
+winston.add(winston.transports.File, { filename: 'logfile.log'} );
 
 if(config.has('jwtPrivatekey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not found');
