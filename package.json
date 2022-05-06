@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1"
+=======
+    "test": "jest --watchAll"
+>>>>>>> 877c042... performed unit testing using jest npm
   },
   "keywords": [],
   "author": "",
@@ -21,6 +25,14 @@
     "lodash": "^4.17.21",
     "mongoose": "^5.0.2",
     "require-stack": "^1.0.2",
+<<<<<<< HEAD
     "winston": "^2.4.0"
+=======
+    "winston": "^2.4.0",
+    "winston-mongodb": "^5.0.7"
+  },
+  "devDependencies": {
+    "jest": "^28.0.3"
+>>>>>>> 877c042... performed unit testing using jest npm
   }
 }

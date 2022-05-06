@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require('express-async-errors');
 const winston = require('winston');
 const error = require('./middleware/error');
@@ -40,3 +41,18 @@ app.use(error);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
+=======
+const jwt = require('jsonwebtoken');
+const express = require('express');
+const winston = require('winston');
+const app = express();
+
+require('./startup/loggin');
+require('./startup/route')(app);
+require('./startup/db')();
+require('./startup/config')();
+require('./startup/validation')();
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => winston.info(`Listening on port ${port}...`));
+>>>>>>> 877c042... performed unit testing using jest npm
