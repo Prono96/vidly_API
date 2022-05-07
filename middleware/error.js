@@ -7,7 +7,4 @@ function error (err, req, res, next) {
 }
 
 
-<<<<<<< HEAD
-=======
 module.exports = error;
->>>>>>> 877c042... performed unit testing using jest npm
