@@ -1,14 +1,17 @@
-// const { describe } = require('joi/lib/types/lazy');
+const mongoose = require('mongoose');
 const request = require('supertest');
 const {Genre} = request('../../models/genre');
+
+
+
 let server;
 
-// jest.useFakeTimers();
 
-// const allow_describe = () => {
-//   if(allow_describe === undefined) {return};
-// }
+
+
 describe('/api/genres', ()=>{
+  jest.useFakeTimers();
+
   beforeEach(() => { server = require('../../index'); });
   afterEach(async () => {
   server.close();
@@ -27,15 +30,30 @@ describe('/api/genres', ()=>{
     })
   });
 
-  // describe('GET /:id',  () => {
-  //   it('should return a genre if the id is valid', async () => {
-  //     const genre = new Genre({name: 'genre1'});
-  //     await genre.save();
+  describe('GET /:id',  () => {
+    it('should return a genre if the id is valid', async () => {
+      const genre = new Genre({name: 'genre1'});
+      await genre.save();
 
-  //     const res = await request(server).get('/api/genres/' + genre._id);
-  //     expect(res.status).toBe(200);
-  //     expect(res.body).toHaveProperty('name', genre.name);
+      const res = await request(server).get('/api/genres/' + genre._id);
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty('name', genre.name);
 
-  //   });
-  // });
+    });
+
+    it('should return a 404 if the id is invalid', async () => {  
+
+      const res = await request(server).get('/api/genres/1');
+      expect(res.status).toBe(400);
+     
+    });
+  });
+
+  // Testing for genre post 
+  describe('POST /', () => {
+    it('should return a 401 error if user is not logged in', async() => {
+      const res = await request(server).post('api/genres').send({name: 'genre1'});
+      expect(res).toBe(401);
+    })
+  })
 });
