@@ -13,8 +13,8 @@ describe('/api/genres', ()=>{
   jest.useFakeTimers();
 
   beforeEach(() => { server = require('../../index'); });
-  afterEach(async () => {
-  server.close();
+  afterEach(async() => {
+  await server.close();
   await Genre.remove({});
   });
   describe('GET /', () => {

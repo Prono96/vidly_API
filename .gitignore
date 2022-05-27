@@ -1,3 +1,4 @@
-node_modules
+node_modules/
+coverage/
 index.html
 demo.js
