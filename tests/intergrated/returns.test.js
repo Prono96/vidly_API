@@ -2,6 +2,7 @@ const {Rental} = require('../../models/rental');
 const {Customer} = require('../../models/customer');
 const request = require('supertest');
 const mongoose = require('mongoose');
+const { User } = require('../../models/user');
 
 describe('/api/returns', () => {
   let server;
@@ -45,7 +46,18 @@ describe('/api/returns', () => {
     const res = request(server)
     .post('/api/return')
     .send({customerId, movieId});
-    expect(res).toContain(customerId, movieId);
+    expect(res).toBe(400);
+  });
+
+  // Testing for user authentication 
+  it('should return return 400 if customerId is not provided', async() => {
+    const token = new User().generateAuthToken;
+    
+    const res = request(server)
+    .post('/api/return')
+    .set('x-auth-token', token)
+    .send({movieId});
+    expect(res).toBe(400);
   });
 
   // Testing for client asin customer 
