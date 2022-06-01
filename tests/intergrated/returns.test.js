@@ -49,6 +49,13 @@ describe('/api/returns', () => {
     expect(res).toBe(400);
   });
 
+  it('it should return 400 if rental is processed', async() => {
+    rental.dateReturned = new Date();
+    await rental.save()
+    const res = request(server).post('/api/return').send({customerId, movieId});
+    expect(res.status).toBe(400);
+  })
+
   // Testing for user authentication 
   it('should return return 400 if customerId is not provided', async() => {
     const token = new User().generateAuthToken;
@@ -57,7 +64,7 @@ describe('/api/returns', () => {
     .post('/api/return')
     .set('x-auth-token', token)
     .send({movieId});
-    expect(res).toBe(400);
+    expect(res).toEqual();
   });
 
   // Testing for client asin customer 
